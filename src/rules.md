@@ -1,6 +1,6 @@
 # Project Rules
 Stack: Plain JavaScript (Node.js >= 18), Nothing else without asking.
-Style: 2-space indent, CommonJS, no default exports.
+Style: 2-space indent, ES Modules (import/export), named exports, no default exports.
 Commands: npm test ; npm run gate
 Scope: Only modify `src/cart.js`. All other files are read-only.
 Contract:
