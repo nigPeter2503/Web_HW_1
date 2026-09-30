@@ -12,3 +12,32 @@ test('the example from the slides', () => {
   const options = { vatRate: 0.08, freeShipFrom: 500000, shipFee: 30000 }
   assert.equal(cartTotal(items, options), 467400)
 })
+test('empty cart', () => {
+  const items = []
+  const options = {}
+  assert.equal(cartTotal(items, options), 0)
+})
+test('Free Shipping', () => {
+  const items = [
+    { name: 'Áo thun', price: 180000, qty: 2 },
+    { name: 'Sổ tay', price: 45000, qty: 10 },
+  ]
+  const options = { vatRate: 0.08, freeShipFrom: 500000, shipFee: 30000 }
+  assert.equal(cartTotal(items, options), 874800)
+})
+test('Negative Price', () => {
+  const items = [
+    { name: 'Áo thun', price: -180000, qty: 2 },
+    { name: 'Sổ tay', price: 45000, qty: 1 },
+  ]
+  const options = { vatRate: 0.08, freeShipFrom: 500000, shipFee: 30000 }
+  assert.throws(() => cartTotal(items, options), RangeError)
+})
+test('Negative Qty', () => {
+  const items = [
+    { name: 'Áo thun', price: 180000, qty: -2 },
+    { name: 'Sổ tay', price: 45000, qty: 1 },
+  ]
+  const options = { vatRate: 0.08, freeShipFrom: 500000, shipFee: 30000 }
+  assert.throws(() => cartTotal(items, options), RangeError)
+})
